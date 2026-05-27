@@ -1,7 +1,8 @@
-import { createClient } from '@supabase/supabase-js';
+// Configuration liée à ton Project ID : ivceprcnfxzxtdsxvmvr
+const SUPABASE_URL = 'https://ivceprcnfxzxtdsxvmvr.supabase.co';
 
-// Remplace ces valeurs par l'URL et la clé 'anon' que tu as vues sur ton tableau de bord Supabase
-const SUPABASE_URL = 'https://ivceprcnfxztdsxvmvr.supabase.co';
-const SUPABASE_ANON_KEY = 'TA_CLE_ANON_ICI';
+// Remplacer par la clé ANON disponible sur ton tableau de bord Supabase
+// Idéalement, cette clé sera placée dans un fichier .env plus tard
+const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY'; 
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
