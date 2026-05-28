@@ -1,7 +1,8 @@
+import 'react-native-url-polyfill/auto';
 import { createClient } from '@supabase/supabase-js';
 
-// Remplace ces valeurs par l'URL et la clé 'anon' que tu as vues sur ton tableau de bord Supabase
-const SUPABASE_URL = 'https://ivceprcnfxztdsxvmvr.supabase.co';
-const SUPABASE_ANON_KEY = 'TA_CLE_ANON_ICI';
+// Remplacement direct des variables par leurs valeurs textuelles
+const SUPABASE_URL = 'https://ivceprcnfxzxtdsxvmvr.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable__lC9nlZFRY2xE4NgvMi0oA_dTWUStVn'; 
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);

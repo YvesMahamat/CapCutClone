@@ -1,45 +1,42 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React from 'react';
+import { SafeAreaView, StatusBar, ActivityIndicator, View, StyleSheet } from 'react-native';
+import { AuthProvider, useAuth } from './src/context/AuthContext';
+import AuthScreen from './src/screens/auth/AuthScreen';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+function NavigationWrapper() {
+  const { user, loading } = useAuth();
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#007FFF" />
+      </View>
+    );
+  }
 
-  return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
-  );
-}
-
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
+  if (!user) {
+    return <AuthScreen />;
+  }
 
   return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
+    <View style={styles.placeholderContainer}>
+      {/* Zone DÉV 2 Navigation */}
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+export default function App() {
+  return (
+    <AuthProvider>
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#121212' }}>
+        <StatusBar barStyle="light-content" />
+        <NavigationWrapper />
+      </SafeAreaView>
+    </AuthProvider>
+  );
+}
 
-export default App;
+const styles = StyleSheet.create({
+  loadingContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#121212' },
+  placeholderContainer: { flex: 1, backgroundColor: '#121212' }
+});
